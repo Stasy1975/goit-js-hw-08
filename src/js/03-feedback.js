@@ -12,16 +12,15 @@ const btnEl = formRef.querySelector('button[type="submit"]');
 
 let currentFeedbackFormState = localStorage.getItem('feedback-form-state');
 currentFeedbackFormState = currentFeedbackFormState
-  ? JSON.parse(currentFeedbackFormState)
+  ? JSON.parse(localStorage.getItem('feedback-form-state'))
   : {};
-
-btnEl.addEventListener('click', onSubmit);
-formRef.addEventListener('input', throttle(fillForm, 500));
 
 const onSubmit = e => {
   e.preventDefault();
-  localStorage.removeItem('feedback-form-state');
+  console.log(currentFeedbackFormState);
+  // localStorage.removeItem('feedback-form-state');
   formRef.reset();
+  currentFeedbackFormState = {};
 };
 
 const fillForm = e => {
@@ -32,3 +31,5 @@ const fillForm = e => {
     JSON.stringify(currentFeedbackFormState)
   );
 };
+btnEl.addEventListener('click', onSubmit);
+formRef.addEventListener('input', throttle(fillForm, 500));
