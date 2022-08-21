@@ -15,6 +15,14 @@ currentFeedbackFormState = currentFeedbackFormState
   ? JSON.parse(localStorage.getItem('feedback-form-state'))
   : {};
 
+if (currentFeedbackFormState.email) {
+  emailEl.value = currentFeedbackFormState.email;
+}
+
+if (currentFeedbackFormState.message) {
+  msgEl.value = currentFeedbackFormState.message;
+}
+
 const onSubmit = e => {
   e.preventDefault();
   console.log(currentFeedbackFormState);
